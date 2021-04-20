@@ -1,0 +1,10 @@
+Describe the problem you are solving?
+We were analysing the data from the Charlies Crash Repairs business - which includes the account information and transaction information. These business was analysed because it is noticed that their turnover is seven times higher than expected, which means that they make $12.2M more than they should. It is suspected that their business is making profit illegally and we were looking for any anomalies within the data, that would indicate illegal transactions.
+
+
+Briefly describe your solution?
+We were able to locate and analyse multiple anomalies within the given business. Anomalies that we found include suspicious large transactions with over $90K, self-self transactions, circular transactions, unusual amount of money spent on Meals and people having double accounts. Utilising Python, NEO4J, Graphistry and Tableau we were able to show this anomalous transaction visually, by creating Network graphs and interactive visualisations. With these tools we are successfully finding Anomalies.
+
+
+What techniques or topic areas make your solution impactful and/or effective?
+Our direct visualisation of Anomalies make our solution impactful. We can demonstrate clearly with Networks how Anomalous transactions look like, how to immediately detect them and stop from happening. Our solution can be utilised by the government, or authorities to stop illegal transactions.

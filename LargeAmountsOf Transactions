@@ -1,0 +1,53 @@
+// Count transactions above 90K
+
+•MATCH (a:Account)-[]-(b:Transaction) where b.AMOUNT> 90000 return count(b.id) 
+-> 132 
+
+// Count accouts involve in the transactions 
+
+•	MATCH (a:Account)-[]-(b:Transaction) where b.AMOUNT>90000 return count(distinct b.id) 
+->29
+
+// Sum Money transfer for each account 
+•	MATCH (a:Account)-[]-(b:Transaction) where b.AMOUNT>90000 return distinct a.id as ACC,s um(b.AMOUNT) as Money order by ACC 
+
+->
+ACC	Money
+500100	192852
+500101	197920
+500102	195729
+500103	191901
+500104	194252
+500105	191949
+500106	195723
+500107	192623
+500108	192581
+500109	192876
+500110	195666
+500111	194499
+500800	400014
+500801	400019
+800373	2337486
+800377	3141540
+800378	800036
+800379	800035
+800381	800038
+800382	800033
+800388	800035
+800390	800035
+800392	800037
+800403	800043
+800404	800028
+800412	800046
+800427	800065
+800434	800051
+
+
+So, account 500800 and 500801 seem  abnormal!
+
+// See the network for them
+MATCH (a:Account)-[]-(b:Transaction) WHERE a.id="800373" or a.id="800377" return a,b
+
+  a large of amounts transfer between these two, as well as they have self-to/from trnasactions!
+  
+  They are Fraud!

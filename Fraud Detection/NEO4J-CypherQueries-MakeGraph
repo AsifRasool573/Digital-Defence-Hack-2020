@@ -1,0 +1,69 @@
+It contains 5 Modules that should be run sepreatly in a Neo4j Desktop Browser:
+
+Module #1  \\ Make data Model
+
+CREATE CONSTRAINT ON (c: Customer) ASSERT c.name IS UNIQUE;
+CREATE CONSTRAINT ON (a: Account) ASSERT a.id IS UNIQUE;
+CREATE CONSTRAINT ON (ty:Type) ASSERT ty.name IS UNIQUE;
+CREATE CONSTRAINT ON (r:Risk) ASSERT r.name IS UNIQUE;
+CREATE CONSTRAINT ON (cc:Category) ASSERT cc.name IS UNIQUE; 
+CREATE CONSTRAINT ON (t:Transaction) ASSERT t.id IS UNIQUE;
+
+
+Module #2  \\ Read data from account file ; Make Nodes and Relationships
+
+Note. By default config the files should be placed the Import folder of the databas!
+
+:auto
+USING  PERIODIC COMMIT
+LOAD CSV with HEADERS FROM 'file:///faccount.csv' as line with line
+
+CREATE (account: Account {id:  (line. ACCTID) })        
+SET  account. ACCTCREATED= line. ACCTCREATED
+MERGE (customer:Customer {name:  (line. ACCTNAME) })
+SET customer.DOB=line. DOB,
+       customer. ADDRESS=line. ADDRESS,
+      customer. ADDRESS_LAT=line. ADDRESS_LAT,
+      customer. ADDRESS_LON=line. ADDRESS_LON
+
+
+MERGE (type:Type {name: line. ACCTTYPE})
+Merge (risk:Risk {name: line. ACCTRISK})
+Merge (category:Category {name: line. CATEGORY})
+
+
+CREATE (account)-[:HAS]->( customer)
+CREATE (account)-[:RISK] ->(risk)
+CREATE (account)-[:Type] ->(type)
+CREATE (account)-[:Category] ->( category)
+
+
+Module #3 \\ Read data from transaction file, ftxn2 ; Make Nodes and Relationships
+
+
+:auto
+USING  PERIODIC COMMIT
+LOAD CSV with HEADERS FROM 'file:///ftxn2.csv' as row with row
+CREATE (transaction: Transaction {id:  (row. TXN_ID) })
+SET transaction. ACCTYPE= row. TXTYPE,
+        transaction. AMOUNT=row. AMOUNT,
+        transaction. TXDATE=row. TXDATE,
+        transaction. REFERENCE=row. REFERENCE,
+        transaction. FROMACCTID =row. FROMACCTID,
+        transaction. TOACCTID =row. TOACCTID;
+
+Module #4 \\ Make Relations between transactions 'From' Accounts
+
+Match (a: Transaction),(b:Account)
+WHERE a. FROMACCTID =b.id
+Create (a)-[r:FROM]->(b)
+
+
+Module #5 \\ Make Relations between transactions 'Tp' Accounts
+
+Match (a: Transaction),(b:Account)
+WHERE a. TOACCTID =b.id
+Create (a)-[r:To]->(b);
+
+
+Now your graph is created!

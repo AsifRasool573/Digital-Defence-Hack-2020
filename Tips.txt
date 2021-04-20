@@ -1,0 +1,12 @@
+Here some tips for detections are provided, we can select one and try to looking for finding it based on our observation.
+Jason Lowe
+If you are working of this dataset - here's a couple of tips which was posted for the #challenge_anomaly_detection.1.     Person/Group having multiple accounts under multiple names
+2.     Transactions don’t match the customer/bus/person profile
+3.     High volumes of in and out transactions being made in a short period of time
+4.     Depositing large amounts of cash into account
+5.     Purchasing assets, such as property, cars, jewellery and gold
+6.     Using an accountant/lawyer to make transactions
+
+
+For self to self accounts in transactions, I queried the network and get results around 500 items. But the network is so big and hard to put all them in a good resolutions. I export the results in CSV as well. I also show the transactions based on amount instead of the reference text, Maybe it would be good. I save it in jpg ,csv and json. In all cases accounts are shown in orange!
+If you can give me some filtering, time, amount , ... I can do it  and show a narrow network.
