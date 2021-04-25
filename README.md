@@ -32,5 +32,5 @@ Khai Fahmi Zaki (https://www.linkedin.com/in/khaifahmi/)
 
 
 <h4> We as a team (Team Black_Caps) won AU$5000 cash and AU$1000 in kind prizes. <br>
-Verify <a href= "https://au.badgr.com/public/assertions/bq03RFKhQjymZ4vgyKB_yg?identity__email=eagle.asif07@gmail.com" target= "_blank" > My Credentials <a>
+Verify <a href= "https://au.badgr.com/public/assertions/bq03RFKhQjymZ4vgyKB_yg" target= "_blank" > My Credentials <a>
 </h4>
